@@ -1,1 +1,1 @@
-export default function rebind<TTarget, TSource>(target: TTarget, source: TSource, ...names: (keyof TSource)[]): TTarget & Pick<TSource, keyof TSource>;
+export default function rebind<TTarget, TSource, TName extends keyof TSource>(target: TTarget, source: TSource, name: TName): TTarget & Pick<TSource, TName>

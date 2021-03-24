@@ -1,0 +1,32 @@
+import createReboundMethod from './createReboundMethod';
+
+export default function rebind<TTarget, TSource>(target: TTarget, source: TSource, ...names: (keyof TSource)[]) {
+    const _target = target as any;
+    for (const name of names) {
+        _target[name] = createReboundMethod(target, source, name);
+    }
+
+    return _target as TTarget & Pick<TSource, typeof names[number]>;
+};
+
+interface Target {
+    targetMethod(): void;
+}
+
+interface Source {
+    sourceMethod(): void
+}
+
+const target: Target = {
+    targetMethod() {
+        console.log("on target");
+    }
+}
+
+const source: Source = {
+    sourceMethod() {
+        console.log("on source")
+    }
+}
+
+const out = rebind(target, source, 'sourceMethod');

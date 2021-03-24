@@ -1,0 +1,11 @@
+export default function createReboundMethod<TTarget, TSource>(target: TTarget, source: TSource, name: keyof TSource) {
+    const method = source[name];
+    if (typeof method !== 'function') {
+        throw new Error(`Attempt to rebind ${name} which isn't a function on the source object`);
+    }
+    return (...args: any[]) => {
+        var value = method.apply(source, args);
+        return value === source ? target : value;
+    };
+};
+

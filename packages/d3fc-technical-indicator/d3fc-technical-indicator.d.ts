@@ -187,6 +187,6 @@ declare namespace fc {
 
 }
 
-declare module 'd3fc-technical-indicator' {
+declare module '@d3fc/d3fc-technical-indicator' {
     export = fc;
 }

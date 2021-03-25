@@ -19,9 +19,13 @@
   },
   "scripts": {
     "bundle": "npx rollup -c ../../scripts/rollup.config.js",
-    "start": "npm start  --prefix ../d3fc -- --configPkg=d3fc-rebind"
+    "start": "npm start  --prefix ../d3fc -- --configPkg=d3fc-rebind",
+    "test": "tsd"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "tsd": "^0.14.0"
   }
 }

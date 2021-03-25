@@ -1,4 +1,4 @@
-import { expectAssignable, expectNotAssignable } from 'tsd';
+import { expectAssignable, expectNotAssignable, expectType } from 'tsd';
 import rebind from './rebind';
 
 class Target {
@@ -21,10 +21,12 @@ class Source {
         return "nope";
     }
 
-    aGetterSetterExample(value?: boolean) {
-        if (value) {
+    aGetterSetterExample(value?: boolean): Source;
+    aGetterSetterExample(value?: null): boolean;
+    aGetterSetterExample(value?: boolean): boolean | Source {
+        if (typeof value === "boolean") {
             this._value = value;
-            return this;
+            return this as Source;
         } else {
             return this._value
         }
@@ -34,6 +36,12 @@ class Source {
         return 5;
     }
 }
+
+test("Return types of source class getter/setter", () => {
+    const source = new Source();
+    expectType<boolean>(source.aGetterSetterExample())
+    expectType<Source>(source.aGetterSetterExample(true))
+})
 
 test("Rebinding a single source method", () => {
     const source = new Source();

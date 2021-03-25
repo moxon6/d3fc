@@ -1,60 +1,106 @@
-import { expectAssignable, expectType } from 'tsd';
+import { expectAssignable, expectNotAssignable } from 'tsd';
 import rebind from './rebind';
 
-interface Target {
-    targetMethod(): void;
-    anOverlappingMethodName(): boolean;
-}
-
-interface Source {
-    sourceMethod(): void;
-    anotherSourceMethod(): Source | boolean;
-    yetAnotherSourceMethod(): number;
-    anOverlappingMethodName(): string;
-}
-
-const target: Target = {
-    targetMethod() {
+class Target {
+    targetMethod(): void {
         console.log("on target");
-    },
-    anOverlappingMethodName() {
+    }
+    anOverlappingMethodName(): boolean {
         return false;
     }
 }
 
-const source: Source = {
+class Source {
+    _value: boolean = false;
+
     sourceMethod() {
         console.log("on source")
-    },
+    }
+
     anOverlappingMethodName() {
         return "nope";
-    },
-    anotherSourceMethod() {
-        if (Math.random() < 5) {
-            return this as Source;
+    }
+
+    aGetterSetterExample(value?: boolean) {
+        if (value) {
+            this._value = value;
+            return this;
         } else {
-            return true
+            return this._value
         }
-    },
-    yetAnotherSourceMethod() {
+    }
+
+    anotherSourceMethod() {
         return 5;
     }
 }
 
-const firstRebind = rebind(target, source, 'yetAnotherSourceMethod', 'anOverlappingMethodName');
-const secondRebind = rebind(target, source, 'anotherSourceMethod')
+test("Rebinding a single source method", () => {
+    const source = new Source();
+    const target = new Target();
+    const reboundObject = rebind(target, source, 'sourceMethod');
 
-expectType<Target>(target);
-expectType<Source>(source);
+    expectAssignable<{
+        targetMethod(): void;
+        anOverlappingMethodName(): boolean;
+        sourceMethod(): void
+    }>(reboundObject);
 
-expectAssignable<{
-    targetMethod(): void;
-    anOverlappingMethodName(): string;
-    yetAnotherSourceMethod(): number
-}>(firstRebind);
+});
 
-expectAssignable<{
-    targetMethod(): void;
-    anOverlappingMethodName(): boolean;
-    anotherSourceMethod(): Target | boolean;
-}>(secondRebind);
+test("Rebinding an overlapping source method name takes the source type and removes the original target method", () => {
+    const source = new Source();
+    const target = new Target();
+    const reboundObject = rebind(target, source, 'anOverlappingMethodName');
+
+    expectAssignable<{
+        targetMethod(): void;
+        anOverlappingMethodName(): string;
+    }>(reboundObject);
+
+    expectNotAssignable<{
+        targetMethod(): void;
+        anOverlappingMethodName(): boolean;
+    }>(reboundObject);
+})
+
+test("Rebinding a method from Source that can return Source will return Target in it's place", () => {
+    const source = new Source();
+    const target = new Target();
+    const reboundObject = rebind(target, source, 'aGetterSetterExample');
+
+    expectNotAssignable<{
+        aGetterSetterExample(): boolean | Source
+    }>(reboundObject);
+
+    expectAssignable<{
+        aGetterSetterExample(): boolean | Target
+    }>(reboundObject);
+})
+
+test("Rebinding multiple methods from Source to test works", () => {
+    const source = new Source();
+    const target = new Target();
+    const reboundObject = rebind(target, source, 'sourceMethod', 'anotherSourceMethod');
+
+    expectAssignable<{
+        targetMethod(): void;
+        anOverlappingMethodName(): boolean;
+        sourceMethod(): void
+        anotherSourceMethod(): number
+    }>(reboundObject);
+})
+
+test("Transitive rebinding works as expected", () => {
+    const source = new Source();
+    const target = new Target();
+    const reboundObject = rebind(target, source, 'sourceMethod');
+    const rereboundObject = rebind(reboundObject, source, 'anotherSourceMethod');
+
+    expectAssignable<{
+        targetMethod(): void;
+        anOverlappingMethodName(): boolean;
+        sourceMethod(): void
+        anotherSourceMethod(): number
+    }>(rereboundObject);
+})

@@ -20,7 +20,7 @@
   "scripts": {
     "bundle": "npx rollup -c ../../scripts/rollup.config.js",
     "start": "npm start  --prefix ../d3fc -- --configPkg=d3fc-rebind",
-    "test": "tsd"
+    "test:types": "tsd"
   },
   "publishConfig": {
     "access": "public"

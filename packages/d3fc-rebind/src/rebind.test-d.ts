@@ -21,6 +21,8 @@ class Source {
         return "nope";
     }
 
+    aGetterSetterExample(): boolean;
+    aGetterSetterExample(value: boolean): Source;
     aGetterSetterExample(value?: boolean): boolean | Source {
         if (typeof value === "boolean") {
             this._value = value;
@@ -37,8 +39,8 @@ class Source {
 
 test("Return types of source class getter/setter", () => {
     const source = new Source();
-    expectType<boolean>(source.aGetterSetterExample() as boolean)
-    expectType<Source>(source.aGetterSetterExample(true) as Source)
+    expectType<boolean>(source.aGetterSetterExample())
+    expectType<Source>(source.aGetterSetterExample(true))
 })
 
 test("Rebinding a single source method", () => {
@@ -75,11 +77,11 @@ test("Rebinding a method from Source that can return Source will return Target i
     const target = new Target();
     const reboundObject = rebind(target, source, 'aGetterSetterExample');
 
-    expectType<boolean>(source.aGetterSetterExample() as boolean);
-    expectType<boolean>(reboundObject.aGetterSetterExample() as boolean);
+    expectType<boolean>(source.aGetterSetterExample());
+    expectType<boolean>(reboundObject.aGetterSetterExample());
 
-    expectType<Source>(source.aGetterSetterExample(true) as Source);
-    expectType<Target>(reboundObject.aGetterSetterExample() as Target);
+    expectType<Source>(source.aGetterSetterExample(true));
+    expectType<Target>(reboundObject.aGetterSetterExample(true));
 
     expectNotAssignable<{
         aGetterSetterExample(): boolean | Source

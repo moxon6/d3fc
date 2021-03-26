@@ -1,7 +1,12 @@
+type GetterSetter<ThisType, ValueType> = {
+    (): ValueType;
+    (value: ValueType): ThisType;
+}
+
 
 export type ReplaceReturnTypeIfExists<TInputFunction extends ((...args: any[]) => any), TRemove, TReplaceWith> =
-    TRemove extends ReturnType<TInputFunction>
-    ? (...args: Parameters<TInputFunction>) => Exclude<ReturnType<TInputFunction>, TRemove> | TReplaceWith
+    TInputFunction extends GetterSetter<TRemove, infer U>
+    ? GetterSetter<TReplaceWith, U>
     : TInputFunction
 
 

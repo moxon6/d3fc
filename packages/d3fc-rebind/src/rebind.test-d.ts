@@ -77,6 +77,13 @@ test("Rebinding a method from Source that can return Source will return Target i
     const target = new Target();
     const reboundObject = rebind(target, source, 'aGetterSetterExample');
 
+
+    expectType<Source>(source.aGetterSetterExample(true));
+
+    // TODO: FAILING TEST, method signature is
+    // aGetterSetterExample(value?: null): boolean
+    expectType<Target>(reboundObject.aGetterSetterExample(true));
+
     expectNotAssignable<{
         aGetterSetterExample(): boolean | Source
     }>(reboundObject);

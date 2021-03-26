@@ -84,11 +84,13 @@ test("Rebinding a method from Source that can return Source will return Target i
     expectType<Target>(reboundObject.aGetterSetterExample(true));
 
     expectNotAssignable<{
-        aGetterSetterExample(): boolean | Source
+        aGetterSetterExample(): boolean
+        aGetterSetterExample(value: boolean): Source;
     }>(reboundObject);
 
     expectAssignable<{
-        aGetterSetterExample(): boolean | Target
+        aGetterSetterExample(): boolean
+        aGetterSetterExample(value: boolean): Target;
     }>(reboundObject);
 })
 

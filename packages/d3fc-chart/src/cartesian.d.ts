@@ -1,5 +1,5 @@
-import type { ScaleIdentity } from 'd3-scale'
-import type { Store } from './store'
+import type { ScaleIdentity } from 'd3-scale';
+import type { Store } from './store';
 
 export type Functor<T> = ((...args: any[]) => T);
 
@@ -118,4 +118,4 @@ export default function Cartesian<XScale extends Scale | undefined, YScale exten
 export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(xScale?: XScale, yScale?: YScale)
     : CartesianChart<Fallback<XScale>, Fallback<YScale>>;
 
-export { }
+export { };

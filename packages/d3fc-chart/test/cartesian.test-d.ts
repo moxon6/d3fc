@@ -41,20 +41,20 @@ expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleLinear<
 }));
 
 
-const chart = chartCartesian(d3.scaleLinear(), d3.scaleLinear())
+const chart = chartCartesian(d3.scaleLinear(), d3.scaleLinear());
 
 // has rebound scale methods as any-typed methods
-expectType<(...args: any[]) => any>(chart.xInterpolate)
+expectType<(...args: any[]) => any>(chart.xInterpolate);
 expectType<any>(chart.xInterpolate());
-expectType<any>(chart.xInterpolate("an argument"))
+expectType<any>(chart.xInterpolate("an argument"));
 
 // has rebound store methods as any-typed methods
-expectType<(...args: any[]) => any>(chart.xTickArguments)
+expectType<(...args: any[]) => any>(chart.xTickArguments);
 expectType<any>(chart.xTickArguments());
-expectType<any>(chart.xTickArguments("an argument"))
+expectType<any>(chart.xTickArguments("an argument"));
 
 // Has methods specific to cartesian instances
-expectType<WebglPlotArea>(chart.webglPlotArea())
-expectType<CanvasPlotArea>(chart.canvasPlotArea())
-expectType<SvgPlotArea>(chart.svgPlotArea())
-expectType<boolean>(chart.useDevicePixelRatio())
+expectType<WebglPlotArea>(chart.webglPlotArea());
+expectType<CanvasPlotArea>(chart.canvasPlotArea());
+expectType<SvgPlotArea>(chart.svgPlotArea());
+expectType<boolean>(chart.useDevicePixelRatio());

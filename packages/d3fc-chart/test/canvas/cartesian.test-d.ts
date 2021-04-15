@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { chartCanvasCartesian } from '../../index';
 import { Functor } from '../../src/cartesian';
 import { CartesianBaseChart } from '../../src/cartesianBase';
-import { expectType } from 'tsd'
+import { expectType } from 'tsd';
 import { ScaleIdentity, ScaleLinear, scaleTime, scaleLinear } from 'd3';
 
 // can accept zero scale parameters
@@ -42,17 +42,17 @@ expectType<CartesianBaseChart<d3.ScaleLinear<number, number, never>, d3.ScaleLin
 }));
 
 
-const chart = chartCanvasCartesian(d3.scaleLinear(), d3.scaleLinear())
+const chart = chartCanvasCartesian(d3.scaleLinear(), d3.scaleLinear());
 
 // has rebound scale methods as any-typed methods
-expectType<(...args: any[]) => any>(chart.xInterpolate)
+expectType<(...args: any[]) => any>(chart.xInterpolate);
 expectType<any>(chart.xInterpolate());
-expectType<any>(chart.xInterpolate("an argument"))
+expectType<any>(chart.xInterpolate("an argument"));
 
 // has rebound store methods as any-typed methods
-expectType<(...args: any[]) => any>(chart.xTickArguments)
+expectType<(...args: any[]) => any>(chart.xTickArguments);
 expectType<any>(chart.xTickArguments());
-expectType<any>(chart.xTickArguments("an argument"))
+expectType<any>(chart.xTickArguments("an argument"));
 
 // Has methods specific to cartesianbase instances
-expectType<Functor<any>>(chart.plotArea())
+expectType<Functor<any>>(chart.plotArea());

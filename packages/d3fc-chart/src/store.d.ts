@@ -8,4 +8,4 @@ export type Store<StoreProperty extends string> = (
     (<TTarget>(target: TTarget) => TTarget)
 )
 
-export default function <StoreProperty extends string>(...names: StoreProperty[]): Store<StoreProperty>
+export default function <StoreProperty extends string>(...names: StoreProperty[]): Store<StoreProperty>;

@@ -13,4 +13,4 @@ export function CartesianBase<XScale extends Scale | undefined, YScale extends S
 
 export type CartesianBase = typeof CartesianBase;
 
-export { }
+export { };

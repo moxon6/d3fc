@@ -1,15 +1,14 @@
-import { randomFinancial } from '@d3fc/d3fc-random-data'
-import { extentLinear, extentDate } from '@d3fc/d3fc-extent'
 import { annotationSvgGridline } from '@d3fc/d3fc-annotation';
+import { chartCartesian } from '@d3fc/d3fc-chart';
+import { extentDate, extentLinear } from '@d3fc/d3fc-extent';
+import { randomFinancial } from '@d3fc/d3fc-random-data';
 import { seriesSvgCandlestick, seriesSvgMulti } from '@d3fc/d3fc-series';
 import { scaleLinear, scaleTime } from 'd3-scale';
-import { chartCartesian } from '@d3fc/d3fc-chart';
-import { select as d3Select } from 'd3-selection'
+import { select as d3Select } from 'd3-selection';
 
 const data = randomFinancial()(50);
 
 const yExtent = extentLinear().accessors([d => d.high, d => d.low]) as ((...args: any[]) => void)
-
 const xExtent = extentDate().accessors([d => d.date]) as ((...args: any[]) => void)
 
 const gridlines = annotationSvgGridline();

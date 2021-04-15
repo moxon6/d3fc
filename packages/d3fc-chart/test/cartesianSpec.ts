@@ -6,40 +6,34 @@ import { ScaleIdentity, ScaleLinear, scaleTime, scaleLinear } from 'd3';
 
 describe('chartCartesian', () => {
     it('can accept zero scale parameters', () => {
-        const chart = chartCartesian();
-        expectType<CartesianChart<ScaleIdentity, ScaleIdentity>>(chart);
+        expectType<CartesianChart<ScaleIdentity, ScaleIdentity>>(chartCartesian());
     })
 
     it('can accept one scale parameter', () => {
-        const chartWithFirstParameter = chartCartesian(d3.scaleLinear());
-        expectType<CartesianChart<ScaleLinear<number, number, never>, ScaleIdentity>>(chartWithFirstParameter);
+        expectType<CartesianChart<ScaleLinear<number, number, never>, ScaleIdentity>>(chartCartesian(d3.scaleLinear()));
 
-        const chartWithSecondParameter = chartCartesian(undefined, d3.scaleLinear());
-        expectType<CartesianChart<d3.ScaleIdentity<never>, d3.ScaleLinear<number, number, never>>>(chartWithSecondParameter);
+        expectType<CartesianChart<d3.ScaleIdentity<never>, d3.ScaleLinear<number, number, never>>>(chartCartesian(undefined, d3.scaleLinear()));
     })
 
     it('can accept two scale parameters', () => {
-        const chart = chartCartesian(d3.scaleLinear(), scaleTime());
-        expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleTime<number, number, never>>>(chart);
+        expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleTime<number, number, never>>>(chartCartesian(d3.scaleLinear(), scaleTime()));
     })
 
     it('can accept a configuration object with one scale', () => {
-        const chartWithYScale = chartCartesian({
+        expectType<CartesianChart<d3.ScaleIdentity, d3.ScaleLinear<number, number, never>>>(chartCartesian({
             yScale: scaleLinear()
-        });
-        expectType<CartesianChart<d3.ScaleIdentity, d3.ScaleLinear<number, number, never>>>(chartWithYScale);
+        }));
     })
 
     it('can accept a configuration object with both scales', () => {
-        const chartWithBothScales = chartCartesian({
+        expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleLinear<number, number, never>>>(chartCartesian({
             xScale: scaleLinear(),
             yScale: scaleLinear()
-        });
-        expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleLinear<number, number, never>>>(chartWithBothScales);
+        }));
     })
 
     it('can accept a configuration object with optional xaxis, yaxis parameters', () => {
-        const chartWithAxes = chartCartesian({
+        expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleLinear<number, number, never>>>(chartCartesian({
             xScale: scaleLinear(),
             yScale: scaleLinear(),
             xAxis: {
@@ -50,25 +44,20 @@ describe('chartCartesian', () => {
                 left: null,
                 right: null
             }
-        });
-        expectType<CartesianChart<d3.ScaleLinear<number, number, never>, d3.ScaleLinear<number, number, never>>>(chartWithAxes);
+        }));
     })
 
+    const chart = chartCartesian(d3.scaleLinear(), d3.scaleLinear())
+
     it('has rebound scale methods as any-typed methods', () => {
-        const chart = chartCartesian(d3.scaleLinear(), d3.scaleLinear());
-        const a = chart.xInterpolate()
-        const b = chart.xInterpolate("an argument")
         expectType<(...args: any[]) => any>(chart.xInterpolate)
-        expectType<any>(a);
-        expectType<any>(b)
+        expectType<any>(chart.xInterpolate());
+        expectType<any>(chart.xInterpolate("an argument"))
     })
 
     it('has rebound store methods as any-typed methods', () => {
-        const chart = chartCartesian(d3.scaleLinear(), d3.scaleLinear());
-        const a = chart.xTickArguments()
-        const b = chart.xTickArguments("an argument")
         expectType<(...args: any[]) => any>(chart.xTickArguments)
-        expectType<any>(a);
-        expectType<any>(b)
+        expectType<any>(chart.xTickArguments());
+        expectType<any>(chart.xTickArguments("an argument"))
     })
 });

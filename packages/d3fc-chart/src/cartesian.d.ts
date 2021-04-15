@@ -7,7 +7,6 @@ type TypeOrFunctor<T> = T | Functor<T>;
 
 type Function = (...args: any[]) => any;
 
-
 interface WebglPlotArea {
     (d: any): any
     context(canvas: HTMLCanvasElement): this
@@ -30,7 +29,6 @@ interface SvgPlotArea {
 }
 
 type Decorator = (container: d3.Selection<any, any, any, any>, data: any, index: number) => void
-
 
 type PrefixProperties<T, Prefix extends string> = {
     [Property in keyof T as `${Prefix}${Capitalize<string & Property>}`]: T[Property]

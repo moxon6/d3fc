@@ -46,6 +46,7 @@
     "@types/d3": "^6.3.0",
     "@types/jest": "^26.0.22",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "babelrc-rollup": "^3.0.0",
     "canvas": "^2.6.1",
     "chalk": "^2.4.2",
@@ -87,8 +88,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "@typescript-eslint/parser": "^4.22.0"
   }
 }

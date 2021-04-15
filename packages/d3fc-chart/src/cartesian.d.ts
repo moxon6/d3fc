@@ -7,7 +7,7 @@ type TypeOrFunctor<T> = T | Functor<T>;
 
 type Function = (...args: any[]) => any;
 
-interface WebglPlotArea {
+export interface WebglPlotArea {
     (d: any): any
     context(canvas: HTMLCanvasElement): this
     pixelRatio(pixelRatio: number): this,
@@ -15,14 +15,14 @@ interface WebglPlotArea {
     yScale(scale: any): this,
 }
 
-interface CanvasPlotArea {
+export interface CanvasPlotArea {
     (d: any): any,
     context(canvas: HTMLCanvasElement): this,
     xScale(scale: any): this,
     yScale(scale: any): this,
 }
 
-interface SvgPlotArea {
+export interface SvgPlotArea {
     (d: any): any,
     xScale(scale: any): this,
     yScale(scale: any): this,

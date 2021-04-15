@@ -7,10 +7,12 @@
         "@d3fc/d3fc-random-data": "file:../../packages/d3fc-random-data",
         "@d3fc/d3fc-series": "file:../../packages/d3fc-series",
         "d3-scale": "^3.2.4",
-        "d3-selection": "^2.0.0",
-        "parcel": "^2.0.0-beta.2"
+        "d3-selection": "^2.0.0"
     },
     "scripts": {
-        "build": "parcel build --dist-dir . --no-content-hash --no-optimize index.ts"
+        "build": "parcel build --out-dir . --no-content-hash --no-minify index.ts"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.5"
     }
 }

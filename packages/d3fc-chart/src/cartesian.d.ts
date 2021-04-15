@@ -5,7 +5,7 @@ export type Functor<T> = ((...args: any[]) => T);
 
 type TypeOrFunctor<T> = T | Functor<T>;
 
-type Function = (...args: any[]) => any;
+type AnyFunction = (...args: any[]) => any;
 
 export interface WebglPlotArea {
     (d: any): any
@@ -35,7 +35,7 @@ type PrefixProperties<T, Prefix extends string> = {
 }
 
 type AnyMethods<T> = {
-    [Property in keyof T]: T[Property] extends Function ? Function : T[Property]
+    [Property in keyof T]: T[Property] extends AnyFunction ? AnyFunction : T[Property]
 }
 
 type XOrient = 'top' | 'bottom' | 'none';

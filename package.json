@@ -8,7 +8,7 @@
     "bundle": "lerna run bundle --stream --concurrency 1",
     "bundle-min": "lerna run bundle --stream --concurrency 1 -- -- --configEnv=prod",
     "test": "jest --config scripts/jest/jest.config.js",
-    "eslint": "eslint \"**/*.js\"",
+    "eslint": "eslint . --ext .js --ext .ts",
     "markdownlint": "markdownlint **/*.md --ignore **/node_modules/**",
     "lint": "npm run eslint && npm run markdownlint",
     "start": "lerna run bundle && npm start --prefix ./packages/d3fc",
@@ -45,6 +45,7 @@
     "@commitlint/travis-cli": "^8.1.0",
     "@types/d3": "^6.3.0",
     "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
     "babelrc-rollup": "^3.0.0",
     "canvas": "^2.6.1",
     "chalk": "^2.4.2",
@@ -86,5 +87,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^4.22.0"
   }
 }

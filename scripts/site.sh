@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
-cd examples/simple-chart
-npm ci
-npm run build
-rm -rf .gitignore node_modules index.ts package*.json .cache
-cd ../..
-
 cd site
 
 cp -r ../examples .

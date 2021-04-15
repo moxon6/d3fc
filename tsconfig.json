@@ -5,10 +5,6 @@
         "lib": [
             "DOM"
         ],
-        "types": [
-            "node",
-            "jest"
-        ],
         "allowJs": true,
         "paths": {
             "@d3fc": [

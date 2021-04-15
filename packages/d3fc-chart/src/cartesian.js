@@ -10,7 +10,7 @@ import './css';
 const functor = (v) =>
     typeof v === 'function' ? v : () => v;
 
-export default function Cartesian(...args) {
+export default (...args) => {
     const { xScale, yScale, xAxis, yAxis } = getArguments(...args);
 
     let chartLabel = functor('');

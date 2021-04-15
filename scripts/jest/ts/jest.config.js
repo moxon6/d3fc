@@ -1,7 +1,7 @@
 module.exports = {
-  "preset": "ts-jest/presets/js-with-ts",
+  preset: "ts-jest/presets/js-with-ts",
   testEnvironment: 'jsdom',
-  rootDir: '.',
+  rootDir: '../../..',
   roots: ['<rootDir>/packages'],
   testMatch: ['**/test/**/*[sS]pec.ts']
 };

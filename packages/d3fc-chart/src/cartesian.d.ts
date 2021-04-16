@@ -99,7 +99,7 @@ export interface Scale {
     domain: any
 }
 
-export interface CartesianChartConfigurationObject<XScale, YScale> {
+export interface CartesianChartConfigurationParameter<XScale, YScale> {
     xScale?: XScale,
     yScale?: YScale,
     xAxis?: {
@@ -112,7 +112,7 @@ export interface CartesianChartConfigurationObject<XScale, YScale> {
     }
 }
 
-export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationObject<XScale, YScale>)
+export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationParameter<XScale, YScale>)
     : CartesianChart<Fallback<XScale>, Fallback<YScale>>;
 
 export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(xScale?: XScale, yScale?: YScale)

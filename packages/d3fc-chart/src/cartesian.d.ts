@@ -115,9 +115,24 @@ export interface CartesianChartConfigurationParameter<XScale, YScale> {
     };
 }
 
+// -------------------------------------------------------------------------------
+// Cartesian Chart Factory
+// -------------------------------------------------------------------------------
+
+/**
+ * Constructs a new Cartesian chart with the given scales and axis components.
+ * If xAxis is specified, it must be an object with the required x-axis factory function (top if xOrient="top" or bottom if xOrient="bottom").
+ * If yAxis is specified, it must be an object with the required y-axis factory function (left if yOrient="left" or right if yOrient="right").
+ * @param configuration 
+ */
 export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationParameter<XScale, YScale>)
     : CartesianChart<Fallback<XScale>, Fallback<YScale>>;
 
+/**
+ * Constructs a new Cartesian chart with the given scales.
+ * @param xScale 
+ * @param yScale 
+ */
 export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(xScale?: XScale, yScale?: YScale)
     : CartesianChart<Fallback<XScale>, Fallback<YScale>>;
 

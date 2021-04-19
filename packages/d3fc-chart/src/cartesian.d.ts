@@ -101,7 +101,15 @@ export type CartesianChart<XScale, YScale> = {
      */
     svgPlotArea(component: SvgPlotAreaComponent): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the current useDevicePixelRatio value.
+     */
     useDevicePixelRatio(): boolean;
+
+    /**
+     * Sets whether the Canvas / WebGL should be scaled based on the resolution of the display device, and returns the Cartesian chart. 
+     * @param useDevicePixelRatio 
+     */
     useDevicePixelRatio(useDevicePixelRatio: boolean): CartesianChart<XScale, YScale>;
 
     /**

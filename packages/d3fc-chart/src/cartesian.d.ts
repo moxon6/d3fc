@@ -67,8 +67,16 @@ export type CartesianChart<XScale, YScale> = {
     chartLabel(): Functor<string>;
     chartLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the current decorator function.
+     */   
     decorate(): Decorator;
-    decorate(decorate: Decorator): CartesianChart<XScale, YScale>;
+
+    /**
+     * Sets the decorator function to the specified, and returns the Cartesian chart. 
+     * @param decorateFunc 
+     */
+    decorate(decorateFunc: Decorator): CartesianChart<XScale, YScale>;
 
     /**
      * Returns the existing component.
@@ -114,8 +122,16 @@ export type CartesianChart<XScale, YScale> = {
      */
     xAxisHeight(height: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the current decorator function.
+     */   
     xDecorate(): Decorator;
-    xDecorate(decorate: Decorator): CartesianChart<XScale, YScale>;
+
+    /**
+     * Sets the decorator function to the specified, and returns the Cartesian chart. 
+     * @param decorateFunc 
+     */
+    xDecorate(decorateFunc: Decorator): CartesianChart<XScale, YScale>;
 
     xLabel(): Functor<string>;
     xLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
@@ -140,8 +156,16 @@ export type CartesianChart<XScale, YScale> = {
       */
     yAxisWidth(width: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the current decorator function.
+     */   
     yDecorate(): Decorator;
-    yDecorate(decorate: Decorator): CartesianChart<XScale, YScale>;
+
+    /**
+     * Sets the decorator function to the specified, and returns the Cartesian chart. 
+     * @param decorateFunc 
+     */
+    yDecorate(decorateFunc: Decorator): CartesianChart<XScale, YScale>;
 
     yLabel(): Functor<string>;
     yLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;

@@ -1,9 +1,17 @@
 import { CartesianChart, Functor, CartesianChartConfigurationParameter, Scale, Fallback } from "./cartesian";
 
-export type CartesianBaseChart<XScale, YScale> = Omit<CartesianChart<XScale, YScale>, 'webglPlotArea' | 'canvasPlotArea' | 'svgPlotArea' | 'useDevicePixelRatio'> & {
-    plotArea(): Functor<any>;
-    plotArea(plotArea: any): CartesianBaseChart<XScale, YScale>;
+type PickXYProperties<T> = {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    [K in keyof T as K extends `${'x' | 'y'}${infer _}` ? K : never]: T[K]
 };
+
+export type CartesianBaseChart<XScale, YScale> = 
+    PickXYProperties<CartesianChart<XScale, YScale>> & 
+    Pick<CartesianChart<XScale, YScale>, 'chartLabel'> & 
+    {
+        plotArea(): Functor<any>;
+        plotArea(plotArea: any): CartesianBaseChart<XScale, YScale>;
+    };
 
 export function CartesianBase<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationParameter<XScale, YScale>)
     : CartesianBaseChart<Fallback<XScale>, Fallback<YScale>>;

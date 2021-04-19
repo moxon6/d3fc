@@ -147,8 +147,20 @@ export type CartesianChart<XScale, YScale> = {
      */
     xLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns a function that returns the orientation. 
+     */
     xOrient(): Functor<XOrient>;
-    xOrient(orient: XOrient): CartesianChart<XScale, YScale>;
+
+    /**
+      * Sets the orientation for the axis in the given direction, and returns the Cartesian chart. 
+      * Valid values for `xOrient` are `"top"`, `"bottom"` or `"none"`.
+      * The value can either be a string, or a function that returns a string. 
+      * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
+      * This can be useful if you are rendering multiple charts using a data join.
+      * @param orient 
+      */
+    xOrient(orient: TypeOrFunctor<XOrient>): CartesianChart<XScale, YScale>;
 
     /**
      * Returns the y-axis width or null if not set. 
@@ -192,8 +204,20 @@ export type CartesianChart<XScale, YScale> = {
       */
     yLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
-    yOrient(): Functor<YOrient>;
-    yOrient(orient: YOrient): CartesianChart<XScale, YScale>;
+    /**
+     * Returns a function that returns the orientation. 
+     */
+     yOrient(): Functor<YOrient>;
+
+    /**
+      * Sets the orientation for the axis in the given direction, and returns the Cartesian chart. 
+      * Valid values for `yOrient` are `"left"`, `"right"` or `"none"`.
+      * The value can either be a string, or a function that returns a string. 
+      * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
+      * This can be useful if you are rendering multiple charts using a data join.
+      * @param orient 
+      */
+    yOrient(orient: TypeOrFunctor<YOrient>): CartesianChart<XScale, YScale>;
 }
     & AnyMethods<PrefixProperties<OmitPrefixes<XScale>, 'x'>>
     & AnyMethods<PrefixProperties<OmitPrefixes<XScale>, 'y'>>

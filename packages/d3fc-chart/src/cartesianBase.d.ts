@@ -1,4 +1,4 @@
-import { CartesianChart, Functor, CartesianChartConfigurationParameter, Scale, Fallback } from "./cartesian";
+import { CartesianChart, CartesianChartConfigurationParameter, Scale, Fallback } from "./cartesian";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type StartsWith<K, TPrefix extends string> = K extends `${TPrefix}${infer _}` ? K : never;
@@ -11,8 +11,8 @@ export type CartesianBaseChart<XScale, YScale> =
     PickXYProperties<CartesianChart<XScale, YScale>> & 
     Pick<CartesianChart<XScale, YScale>, 'chartLabel'> & 
     {
-        plotArea(): Functor<any>;
-        plotArea(plotArea: any): CartesianBaseChart<XScale, YScale>;
+        plotArea(): any;
+        plotArea(component: any): CartesianBaseChart<XScale, YScale>;
     };
 
 export function CartesianBase<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationParameter<XScale, YScale>)

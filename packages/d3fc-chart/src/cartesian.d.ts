@@ -39,7 +39,9 @@ type AnyMethods<T> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-type OmitPrefixes<T> = {[K in keyof T as K extends `${ 'range' | 'tickFormat' }${infer _}` ? never : K]: T[K]};
+type NotStartsWith<K, TPrefix extends string> = K extends `${TPrefix}${infer _}` ? never : K;
+
+type OmitPrefixes<T> = {[K in keyof T as NotStartsWith<K, 'range' | 'tickFormat'> ]: T[K]};
 
 type XOrient = 'top' | 'bottom' | 'none';
 type YOrient = 'left' | 'right' | 'none';

@@ -1,8 +1,10 @@
 import { CartesianChart, Functor, CartesianChartConfigurationParameter, Scale, Fallback } from "./cartesian";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type StartsWith<K, TPrefix extends string> = K extends `${TPrefix}${infer _}` ? K : never;
+
 type PickXYProperties<T> = {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    [K in keyof T as K extends `${'x' | 'y'}${infer _}` ? K : never]: T[K]
+    [K in keyof T as StartsWith<K, 'x' | 'y'> ]: T[K]
 };
 
 export type CartesianBaseChart<XScale, YScale> = 

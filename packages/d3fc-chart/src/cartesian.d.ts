@@ -8,35 +8,35 @@ type TypeOrFunctor<T> = T | Functor<T>;
 type AnyFunction = (...args: any[]) => any;
 
 export interface WebglPlotArea {
-    (d: any): any
-    context(canvas: HTMLCanvasElement): this
-    pixelRatio(pixelRatio: number): this,
-    xScale(scale: any): this,
-    yScale(scale: any): this,
+    (d: any): any;
+    context(canvas: HTMLCanvasElement): this;
+    pixelRatio(pixelRatio: number): this;
+    xScale(scale: any): this;
+    yScale(scale: any): this;
 }
 
 export interface CanvasPlotArea {
-    (d: any): any,
-    context(canvas: HTMLCanvasElement): this,
-    xScale(scale: any): this,
-    yScale(scale: any): this,
+    (d: any): any;
+    context(canvas: HTMLCanvasElement): this;
+    xScale(scale: any): this;
+    yScale(scale: any): this;
 }
 
 export interface SvgPlotArea {
-    (d: any): any,
-    xScale(scale: any): this,
-    yScale(scale: any): this,
+    (d: any): any;
+    xScale(scale: any): this;
+    yScale(scale: any): this;
 }
 
-type Decorator = (container: d3.Selection<any, any, any, any>, data: any, index: number) => void
+type Decorator = (container: d3.Selection<any, any, any, any>, data: any, index: number) => void;
 
 type PrefixProperties<T, Prefix extends string> = {
     [Property in keyof T as `${Prefix}${Capitalize<string & Property>}`]: T[Property]
-}
+};
 
 type AnyMethods<T> = {
     [Property in keyof T]: T[Property] extends AnyFunction ? AnyFunction : T[Property]
-}
+};
 
 type XOrient = 'top' | 'bottom' | 'none';
 type YOrient = 'left' | 'right' | 'none';
@@ -90,26 +90,26 @@ export type CartesianChart<XScale, YScale> = {
     & AnyMethods<PrefixProperties<XScale, 'x'>>
     & AnyMethods<PrefixProperties<YScale, 'y'>>
     & AnyMethods<PrefixProperties<AxisStore, 'x'>>
-    & AnyMethods<PrefixProperties<AxisStore, 'y'>>
+    & AnyMethods<PrefixProperties<AxisStore, 'y'>>;
 
-export type Fallback<T> = undefined extends T ? ScaleIdentity : T
+export type Fallback<T> = undefined extends T ? ScaleIdentity : T;
 
 export interface Scale {
-    range: any,
-    domain: any
+    range: any;
+    domain: any;
 }
 
 export interface CartesianChartConfigurationParameter<XScale, YScale> {
-    xScale?: XScale,
-    yScale?: YScale,
+    xScale?: XScale;
+    yScale?: YScale;
     xAxis?: {
-        top: any
-        bottom: any
-    },
+        top: any;
+        bottom: any;
+    };
     yAxis?: {
-        left: any
-        right: any
-    }
+        left: any;
+        right: any;
+    };
 }
 
 export default function Cartesian<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationParameter<XScale, YScale>)

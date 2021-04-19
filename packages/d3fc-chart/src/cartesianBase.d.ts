@@ -11,7 +11,15 @@ export type CartesianBaseChart<XScale, YScale> =
     PickXYProperties<CartesianChart<XScale, YScale>> & 
     Pick<CartesianChart<XScale, YScale>, 'chartLabel'> & 
     {
+        /**
+         * Returns the existing component.
+         */
         plotArea(): any;
+
+        /**
+         * Sets the component to render and returns the Cartesian chart. 
+         * @param component
+         */
         plotArea(component: any): CartesianBaseChart<XScale, YScale>;
     };
 

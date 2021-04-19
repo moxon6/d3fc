@@ -133,7 +133,18 @@ export type CartesianChart<XScale, YScale> = {
      */
     xDecorate(decorateFunc: Decorator): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns a function that returns xLabel.
+     */
     xLabel(): Functor<string>;
+
+    /**
+     * If *label* is specified, sets the text for the given label, and returns the Cartesian chart. 
+     * The *label* value can either be a string, or a function that returns a string. 
+     * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
+     * This can be useful if you are rendering multiple charts using a data join.
+     * @param label 
+     */
     xLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
     xOrient(): Functor<XOrient>;
@@ -167,7 +178,18 @@ export type CartesianChart<XScale, YScale> = {
      */
     yDecorate(decorateFunc: Decorator): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns a function that returns yLabel.
+     */
     yLabel(): Functor<string>;
+
+     /**
+      * If *label* is specified, sets the text for the given label, and returns the Cartesian chart. 
+      * The *label* value can either be a string, or a function that returns a string. 
+      * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
+      * This can be useful if you are rendering multiple charts using a data join.
+      * @param label 
+      */
     yLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
     yOrient(): Functor<YOrient>;

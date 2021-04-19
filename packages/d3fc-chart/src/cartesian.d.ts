@@ -97,7 +97,21 @@ export type CartesianChart<XScale, YScale> = {
      */
     webglPlotArea(component: WebglPlotAreaComponent): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the x-axis height or null if not set. 
+     */
     xAxisHeight(): Functor<string>;
+
+    /**
+     * If `height` is specified, sets the height for the x-axis, and returns the Cartesian chart. 
+     * The value should be a string with units (e.g. "2em"). 
+     * 
+     * The `height` value can either be a string, or a function that returns a string. 
+     * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
+     * 
+     * This can be useful if you are rendering multiple charts using a data join.
+     * @param height 
+     */
     xAxisHeight(height: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
     xDecorate(): Decorator;
@@ -109,8 +123,22 @@ export type CartesianChart<XScale, YScale> = {
     xOrient(): Functor<XOrient>;
     xOrient(orient: XOrient): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the y-axis width or null if not set. 
+     */
     yAxisWidth(): Functor<string>;
-    yAxisWidth(height: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
+
+    /**
+      * If `width` is specified, sets the width for the y-axis, and returns the Cartesian chart. 
+      * The value should be a string with units (e.g. "2em"). 
+      * 
+      * The `width` value can either be a string, or a function that returns a string. 
+      * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
+      * 
+      * This can be useful if you are rendering multiple charts using a data join.
+      * @param width 
+      */
+    yAxisWidth(width: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
 
     yDecorate(): Decorator;
     yDecorate(decorate: Decorator): CartesianChart<XScale, YScale>;

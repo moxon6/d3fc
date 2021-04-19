@@ -72,8 +72,8 @@ export type CartesianChart<XScale, YScale> = {
     chartLabel(): Functor<string>;
 
     /**
-      * If *label* is specified, sets the text for the given label, and returns the Cartesian chart. 
-      * The *label* value can either be a string, or a function that returns a string. 
+      * If `label` is specified, sets the text for the given label, and returns the Cartesian chart. 
+      * The `label` value can either be a string, or a function that returns a string. 
       * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
       * This can be useful if you are rendering multiple charts using a data join.
       * @param label 
@@ -160,8 +160,8 @@ export type CartesianChart<XScale, YScale> = {
     xLabel(): Functor<string>;
 
     /**
-     * If *label* is specified, sets the text for the given label, and returns the Cartesian chart. 
-     * The *label* value can either be a string, or a function that returns a string. 
+     * If `label` is specified, sets the text for the given label, and returns the Cartesian chart. 
+     * The `label` value can either be a string, or a function that returns a string. 
      * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
      * This can be useful if you are rendering multiple charts using a data join.
      * @param label 
@@ -217,8 +217,8 @@ export type CartesianChart<XScale, YScale> = {
     yLabel(): Functor<string>;
 
      /**
-      * If *label* is specified, sets the text for the given label, and returns the Cartesian chart. 
-      * The *label* value can either be a string, or a function that returns a string. 
+      * If `label` is specified, sets the text for the given label, and returns the Cartesian chart. 
+      * The `label` value can either be a string, or a function that returns a string. 
       * If it is a function, it will be invoked with the data that is 'bound' to the chart. 
       * This can be useful if you are rendering multiple charts using a data join.
       * @param label 

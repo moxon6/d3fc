@@ -23,9 +23,20 @@ export type CartesianBaseChart<XScale, YScale> =
         plotArea(component: any): CartesianBaseChart<XScale, YScale>;
     };
 
+/**
+ * Constructs a new Cartesian chart with the given scales and axis components.
+ * If xAxis is specified, it must be an object with the required x-axis factory function (top if xOrient="top" or bottom if xOrient="bottom").
+ * If yAxis is specified, it must be an object with the required y-axis factory function (left if yOrient="left" or right if yOrient="right").
+ * @param configuration 
+ */
 export function CartesianBase<XScale extends Scale | undefined, YScale extends Scale | undefined>(configuration: CartesianChartConfigurationParameter<XScale, YScale>)
     : CartesianBaseChart<Fallback<XScale>, Fallback<YScale>>;
 
+/**
+ * Constructs a new Cartesian chart with the given scales.
+ * @param xScale 
+ * @param yScale 
+ */
 export function CartesianBase<XScale extends Scale | undefined, YScale extends Scale | undefined>(xScale?: XScale, yScale?: YScale)
     : CartesianBaseChart<Fallback<XScale>, Fallback<YScale>>;
 

@@ -7,7 +7,7 @@ type TypeOrFunctor<T> = T | Functor<T>;
 
 type AnyFunction = (...args: any[]) => any;
 
-export interface WebglPlotArea {
+export interface WebglPlotAreaComponent {
     (d: any): any;
     context(canvas: HTMLCanvasElement): this;
     pixelRatio(pixelRatio: number): this;
@@ -15,14 +15,14 @@ export interface WebglPlotArea {
     yScale(scale: any): this;
 }
 
-export interface CanvasPlotArea {
+export interface CanvasPlotAreaComponent {
     (d: any): any;
     context(canvas: HTMLCanvasElement): this;
     xScale(scale: any): this;
     yScale(scale: any): this;
 }
 
-export interface SvgPlotArea {
+export interface SvgPlotAreaComponent {
     (d: any): any;
     xScale(scale: any): this;
     yScale(scale: any): this;
@@ -54,14 +54,15 @@ export type CartesianChart<XScale, YScale> = {
     /**
      * Returns the existing component.
      */
-    canvasPlotArea(): CanvasPlotArea;
+    canvasPlotArea(): CanvasPlotAreaComponent;
 
     /**
      * Sets the component to render onto the canvas, and returns the Cartesian chart. 
      * For series that contain a very high number of data-points, rendering to canvas can reduce the rendering time and improve performance. 
      * For `canvasPlotArea` and `webglPlotArea`, the relevant context is automatically applied to the chart.
+     * @param component
      */
-    canvasPlotArea(plotArea: CanvasPlotArea): CartesianChart<XScale, YScale>;
+    canvasPlotArea(component: CanvasPlotAreaComponent): CartesianChart<XScale, YScale>;
 
     chartLabel(): Functor<string>;
     chartLabel(label: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;
@@ -72,13 +73,14 @@ export type CartesianChart<XScale, YScale> = {
     /**
      * Returns the existing component.
      */
-    svgPlotArea(): SvgPlotArea;
+    svgPlotArea(): SvgPlotAreaComponent;
 
     /**
      * Sets the component to render onto the SVG, and returns the Cartesian chart. 
      * For components that require user-interaction, rendering to SVG can simplify their implementation.
+     * @param component
      */
-    svgPlotArea(plotArea: SvgPlotArea): CartesianChart<XScale, YScale>;
+    svgPlotArea(component: SvgPlotAreaComponent): CartesianChart<XScale, YScale>;
 
     useDevicePixelRatio(): boolean;
     useDevicePixelRatio(useDevicePixelRatio: boolean): CartesianChart<XScale, YScale>;
@@ -86,13 +88,14 @@ export type CartesianChart<XScale, YScale> = {
     /**
      * Returns the existing component.
      */
-    webglPlotArea(): WebglPlotArea;
+    webglPlotArea(): WebglPlotAreaComponent;
 
     /**
      * Sets the component to render, and returns the Cartesian chart. 
      * For `canvasPlotArea` and `webglPlotArea`, the relevant context is automatically applied to the chart.
+     * @param component
      */
-    webglPlotArea(plotArea: WebglPlotArea): CartesianChart<XScale, YScale>;
+    webglPlotArea(component: WebglPlotAreaComponent): CartesianChart<XScale, YScale>;
 
     xAxisHeight(): Functor<string>;
     xAxisHeight(height: TypeOrFunctor<string>): CartesianChart<XScale, YScale>;

@@ -38,6 +38,9 @@ type AnyMethods<T> = {
     [Property in keyof T]: T[Property] extends AnyFunction ? AnyFunction : T[Property]
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type OmitPrefixes<T> = {[K in keyof T as K extends `${ 'range' | 'tickFormat' }${infer _}` ? never : K]: T[K]};
+
 type XOrient = 'top' | 'bottom' | 'none';
 type YOrient = 'left' | 'right' | 'none';
 type AxisStore = Store<'tickFormat' | 'ticks' | 'tickArguments' | 'tickSize' | 'tickSizeInner' | 'tickSizeOuter' | 'tickValues' | 'tickPadding' | 'tickCenterLabel'>;
@@ -87,8 +90,8 @@ export type CartesianChart<XScale, YScale> = {
     yOrient(): Functor<YOrient>;
     yOrient(orient: YOrient): CartesianChart<XScale, YScale>;
 }
-    & AnyMethods<PrefixProperties<XScale, 'x'>>
-    & AnyMethods<PrefixProperties<YScale, 'y'>>
+    & AnyMethods<PrefixProperties<OmitPrefixes<XScale>, 'x'>>
+    & AnyMethods<PrefixProperties<OmitPrefixes<XScale>, 'y'>>
     & AnyMethods<PrefixProperties<AxisStore, 'x'>>
     & AnyMethods<PrefixProperties<AxisStore, 'y'>>;
 

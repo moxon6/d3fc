@@ -45,10 +45,22 @@ type XOrient = 'top' | 'bottom' | 'none';
 type YOrient = 'left' | 'right' | 'none';
 type AxisStore = Store<'tickFormat' | 'ticks' | 'tickArguments' | 'tickSize' | 'tickSizeInner' | 'tickSizeOuter' | 'tickValues' | 'tickPadding' | 'tickCenterLabel'>;
 
+/**
+ * Cartesian Chart
+ */
 export type CartesianChart<XScale, YScale> = {
     (selection: d3.Selection<any, any, any, any>): void;
 
+    /**
+     * Returns the existing component.
+     */
     canvasPlotArea(): CanvasPlotArea;
+
+    /**
+     * Sets the component to render onto the canvas, and returns the Cartesian chart. 
+     * For series that contain a very high number of data-points, rendering to canvas can reduce the rendering time and improve performance. 
+     * For `canvasPlotArea` and `webglPlotArea`, the relevant context is automatically applied to the chart.
+     */
     canvasPlotArea(plotArea: CanvasPlotArea): CartesianChart<XScale, YScale>;
 
     chartLabel(): Functor<string>;
@@ -57,13 +69,29 @@ export type CartesianChart<XScale, YScale> = {
     decorate(): Decorator;
     decorate(decorate: Decorator): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the existing component.
+     */
     svgPlotArea(): SvgPlotArea;
+
+    /**
+     * Sets the component to render onto the SVG, and returns the Cartesian chart. 
+     * For components that require user-interaction, rendering to SVG can simplify their implementation.
+     */
     svgPlotArea(plotArea: SvgPlotArea): CartesianChart<XScale, YScale>;
 
     useDevicePixelRatio(): boolean;
     useDevicePixelRatio(useDevicePixelRatio: boolean): CartesianChart<XScale, YScale>;
 
+    /**
+     * Returns the existing component.
+     */
     webglPlotArea(): WebglPlotArea;
+
+    /**
+     * Sets the component to render, and returns the Cartesian chart. 
+     * For `canvasPlotArea` and `webglPlotArea`, the relevant context is automatically applied to the chart.
+     */
     webglPlotArea(plotArea: WebglPlotArea): CartesianChart<XScale, YScale>;
 
     xAxisHeight(): Functor<string>;

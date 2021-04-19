@@ -54,7 +54,7 @@ export type CartesianChart<XScale, YScale> = {
     /**
      * Returns the existing component.
      */
-    canvasPlotArea(): CanvasPlotAreaComponent;
+    canvasPlotArea(): CanvasPlotAreaComponent | null;
 
     /**
      * Sets the component to render onto the canvas, and returns the Cartesian chart. 
@@ -92,7 +92,7 @@ export type CartesianChart<XScale, YScale> = {
     /**
      * Returns the existing component.
      */
-    svgPlotArea(): SvgPlotAreaComponent;
+    svgPlotArea(): SvgPlotAreaComponent | null;
 
     /**
      * Sets the component to render onto the SVG, and returns the Cartesian chart. 
@@ -115,7 +115,7 @@ export type CartesianChart<XScale, YScale> = {
     /**
      * Returns the existing component.
      */
-    webglPlotArea(): WebglPlotAreaComponent;
+    webglPlotArea(): WebglPlotAreaComponent | null;
 
     /**
      * Sets the component to render, and returns the Cartesian chart. 

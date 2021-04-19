@@ -54,7 +54,7 @@ expectType<any>(chart.xTickArguments());
 expectType<any>(chart.xTickArguments("an argument"));
 
 // Has methods specific to cartesian instances
-expectType<WebglPlotAreaComponent>(chart.webglPlotArea());
-expectType<CanvasPlotAreaComponent>(chart.canvasPlotArea());
-expectType<SvgPlotAreaComponent>(chart.svgPlotArea());
+expectType<WebglPlotAreaComponent | null>(chart.webglPlotArea());
+expectType<CanvasPlotAreaComponent | null>(chart.canvasPlotArea());
+expectType<SvgPlotAreaComponent | null>(chart.svgPlotArea());
 expectType<boolean>(chart.useDevicePixelRatio());

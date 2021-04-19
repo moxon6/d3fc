@@ -106,12 +106,12 @@ export interface CartesianChartConfigurationParameter<XScale, YScale> {
     xScale?: XScale;
     yScale?: YScale;
     xAxis?: {
-        top: any;
-        bottom: any;
+        top?: any;
+        bottom?: any;
     };
     yAxis?: {
-        left: any;
-        right: any;
+        left?: any;
+        right?: any;
     };
 }
 

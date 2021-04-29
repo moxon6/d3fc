@@ -1,2 +1,3 @@
 import { Extent } from './common';
-export default function _default(): Extent<Date>;
+export type ExtentTime = Extent<Date>;
+export default function _default(): ExtentTime;

@@ -1,2 +1,3 @@
 import { Extent } from './common';
-export default function _default(): Extent<number>;
+export type ExtentLinear = Extent<number>;
+export default function _default(): ExtentLinear;

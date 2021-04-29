@@ -1,7 +1,6 @@
-type Accessor<T> = (d: any) => T | T[];
-type Pad = [number, number];
-type PadUnit = "domain" | "percent";
-type SymmetricalAbout = number | null;
+export type Accessor<T> = (d: any) => T | T[];
+export type Pad = [number, number];
+export type PadUnit = "domain" | "percent";
 
 export interface Extent<T extends number | Date> {
     (data: any[]): [T, T];
@@ -48,6 +47,6 @@ export interface Extent<T extends number | Date> {
     include(): number[];
     include(include: number[]): this;
     
-    symmetricalAbout(): SymmetricalAbout;
-    symmetricalAbout(symmetricalAbout: SymmetricalAbout): this;
+    symmetricalAbout(): number | null;
+    symmetricalAbout(symmetricalAbout: number | null): this;
 }

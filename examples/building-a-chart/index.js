@@ -1,3 +1,5 @@
+/// <reference path="../../packages/d3fc/index.d.ts" />
+
 // a random number generator
 const generator = fc.randomGeometricBrownianMotion().steps(11);
 
@@ -30,16 +32,20 @@ const data = {
     }))
 };
 
+const sb = d3.scaleBand();
+const sl = d3.scaleLinear();
+
 const chart = fc
-    .chartCartesian(d3.scaleBand(), d3.scaleLinear())
+    .chartCartesian(sb, sl)
     .chartLabel('2015 Cumulative Sales')
-    .xDomain(data.sales.map(d => d.month))
-    .yDomain(yExtent(data.sales))
-    .xPadding(0.2)
-    .yTicks(5)
-    .yTickFormat(valueFormatter)
-    .yLabel('Sales (millions)')
-    .yNice();
+    .yLabel('Sales (millions)');
+
+chart.xDomain(data.sales.map(d => d.month));
+chart.yDomain(yExtent(data.sales));
+chart.xPadding(0.2);
+chart.yTicks(5);
+chart.yTickFormat(valueFormatter);
+chart.yNice();
 
 const bar = fc
     .autoBandwidth(fc.seriesSvgBar())

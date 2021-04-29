@@ -66,3 +66,8 @@ expectType<WebglPlotAreaComponent | null>(chart.webglPlotArea());
 expectType<CanvasPlotAreaComponent | null>(chart.canvasPlotArea());
 expectType<SvgPlotAreaComponent | null>(chart.svgPlotArea());
 expectType<boolean>(chart.useDevicePixelRatio());
+
+// Correctly rebinds methods from non ScaleIdentity scales
+const chartScaleBand = chartCartesian(d3.scaleBand(), d3.scaleLinear());
+expectType<any>(chartScaleBand.xPadding());
+expectType<any>(chartScaleBand.xPadding(5));

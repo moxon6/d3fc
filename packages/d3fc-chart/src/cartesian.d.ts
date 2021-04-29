@@ -250,7 +250,7 @@ export type CartesianChart<XScale, YScale> = {
     & AnyMethods<PrefixProperties<AxisD3fc<any>, 'x'>>
     & AnyMethods<PrefixProperties<AxisD3fc<any>, 'y'>>;
 
-export type Fallback<T> = undefined extends T ? ScaleIdentity : T;
+export type Fallback<T> = T extends undefined ? ScaleIdentity : T;
 
 export interface Scale {
     range: any;

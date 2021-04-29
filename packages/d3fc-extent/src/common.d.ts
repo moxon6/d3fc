@@ -14,7 +14,6 @@ export interface Extent<T extends number | Date> {
     /**
      * Sets the array of value accessors to the specified array and returns this extent instance.
      * The accessors are applied to each data value before computing the extent.
-     * The value returned by the accessors must be of type {T} or an array of type {T}.
      * Defaults to an identity function (i.e. d => d).
      * @param accessors
      */

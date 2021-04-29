@@ -71,3 +71,6 @@ expectType<boolean>(chart.useDevicePixelRatio());
 const chartScaleBand = chartCartesian(d3.scaleBand(), d3.scaleLinear());
 expectType<any>(chartScaleBand.xPadding());
 expectType<any>(chartScaleBand.xPadding(5));
+
+expectType<any>(chartScaleBand.yNice());
+expectType<any>(chartScaleBand.yNice(5));

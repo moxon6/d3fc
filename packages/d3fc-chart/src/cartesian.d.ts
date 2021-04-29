@@ -246,7 +246,7 @@ export type CartesianChart<XScale, YScale> = {
     yOrient(orient: TypeOrFunctor<YOrient>): CartesianChart<XScale, YScale>;
 }
     & AnyMethods<PrefixProperties<OmitPrefixes<XScale>, 'x'>>
-    & AnyMethods<PrefixProperties<OmitPrefixes<XScale>, 'y'>>
+    & AnyMethods<PrefixProperties<OmitPrefixes<YScale>, 'y'>>
     & AnyMethods<PrefixProperties<AxisD3fc<any>, 'x'>>
     & AnyMethods<PrefixProperties<AxisD3fc<any>, 'y'>>;
 
